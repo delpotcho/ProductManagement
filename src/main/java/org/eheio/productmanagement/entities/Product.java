@@ -2,9 +2,14 @@ package org.eheio.productmanagement.entities;
 
 import java.time.LocalDateTime;
 
+import javax.annotation.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+@Entity
 public class Product {
-
-    private Long productID;
+@Id 
+    private Long ID;
     private String name;
     private Double price;
     private LocalDateTime date;
@@ -14,7 +19,7 @@ public class Product {
 	public Product(Long productID, String name, Double price, LocalDateTime date, String description,
 			Category category) {
 		super();
-		this.productID = productID;
+		this.ID = productID;
 		this.name = name;
 		this.price = price;
 		this.date = date;
@@ -23,11 +28,11 @@ public class Product {
 	}
 
 	public Long getProductID() {
-		return productID;
+		return ID;
 	}
 
 	public void setProductID(Long productID) {
-		this.productID = productID;
+		this.ID = productID;
 	}
 
 	public String getName() {
