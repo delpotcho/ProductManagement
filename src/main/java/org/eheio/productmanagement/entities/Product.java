@@ -1,25 +1,35 @@
 package org.eheio.productmanagement.entities;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 @Entity
 public class Product {
-@Id 
-    private Long ID;
-    private String name;
-    private Double price;
-    private LocalDateTime date;
-    private String description;
-    private Category category;
-    
-	public Product(Long productID, String name, Double price, LocalDateTime date, String description,
-			Category category) {
+	@Id
+	private Long id;
+	private String name;
+	private Double price;
+	private Date date;
+	private String description;
+	private Category category;
+
+	public Product() {
+		
+	}
+	public Product(Long id, String name, Double price, Date date, String description) {
 		super();
-		this.ID = productID;
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.date = date;
+		this.description = description;
+	}
+	
+	public Product(Long id, String name, Double price, Date date, String description, Category category) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.date = date;
@@ -27,12 +37,12 @@ public class Product {
 		this.category = category;
 	}
 
-	public Long getProductID() {
-		return ID;
+	public Long getId() {
+		return id;
 	}
 
-	public void setProductID(Long productID) {
-		this.ID = productID;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -51,12 +61,12 @@ public class Product {
 		this.price = price;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
+	public void setDate(Date date2) {
+		this.date = date2;
 	}
 
 	public String getDescription() {
@@ -74,5 +84,5 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-    
+
 }

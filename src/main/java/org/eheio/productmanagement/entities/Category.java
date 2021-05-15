@@ -4,25 +4,25 @@ import java.util.List;
 
 public class Category {
 
-    private Long categoryID;
-    private String name;
-    private String description;
-    private List<Product> products;
-    
-	public Category(Long categoryID, String name, String description, List<Product> products) {
+	private Long id;
+	private String name;
+	private String description;
+	private List<Product> products;
+
+	public Category(Long id, String name, String description, List<Product> products) {
 		super();
-		this.categoryID = categoryID;
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.products = products;
 	}
 
-	public Long getCategoryID() {
-		return categoryID;
+	public Long getId() {
+		return id;
 	}
 
-	public void setCategoryID(Long categoryID) {
-		this.categoryID = categoryID;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
