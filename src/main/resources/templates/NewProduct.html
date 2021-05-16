@@ -2,9 +2,29 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Product Management</title>
 </head>
 <body>
+	<div class="container">
+		<h2>add Product</h2>
+		<form action="#" th:action="@{/saveProduct}" th:object="${product}"
+			method="POST">
+			<input type="text" th:field=*{name}
+				placeholder="name product " class="form-control mb-4 col-4">
+			<input type="text" th:field=*{price} placeholder="price"
+				class="form-control mb-4 col-4">
+			 <input type="text"
+				th:field=*{description} placeholder="description " class="form-control mb-4 col-4">
+			<select th:field="*{category}" class="form-control mb-4 col-4" >
+			 <option th:each="p :${listCategory} " th:value ="${p.id}" th:text ="${p.name}">
+			 </select> 
+			
+				<button type="submit" class="btn btn-info col-2">ajouter un
+				produit</button>
+		</form>
+	</div>
 
 </body>
 </html>
