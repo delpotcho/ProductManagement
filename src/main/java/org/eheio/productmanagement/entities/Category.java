@@ -20,6 +20,17 @@ public class Category {
 	@OneToMany (mappedBy = "category")
 	private List<Product> products;
 
+	public Category() {
+
+	}
+	
+	public Category(Long id, String name, String description) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+	}
+	
 	public Category(Long id, String name, String description, List<Product> products) {
 		super();
 		this.id = id;

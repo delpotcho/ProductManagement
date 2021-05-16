@@ -6,19 +6,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eheio.productmanagement.entities.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ProductDAOImpl implements ProductDAO {
 
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	final String SELECT_PRODUCT_BY_ID = "select ProductID, Name, Price, Date, Description from products.product where ProductID =?;";
-	final String SELECT_ALL_PRODUCTS = "select * from products.product;";
-
-	final String INSERT_QUERY = "INSERT INTO products.product (Name, Price, Date, Description) VALUES  (?, ?, ?, ?);";
-	final String UPDATE_QUERY = "update products.product set Name = ?, Price = ?, Date =?, Description = ? where ProductID = ?;";
-	final String DELETE_QUERY = "delete from products.product where ProductID = ?;";
+	final String SELECT_PRODUCT_BY_ID = "select id, Name, Price, Date, Description, category_id from productmanagement.product, where id =?;";
+	final String SELECT_ALL_PRODUCTS = "select * from productmanagement.product;";
+	
+	final String INSERT_QUERY = "INSERT INTO productmanagement.product (Name, Price, Date, Description) VALUES  (?, ?, ?, ?);";
+	final String UPDATE_QUERY = "update productmanagement.product set Name = ?, Price = ?, Date =?, Description = ? where id = ?;";
+	final String DELETE_QUERY = "delete from productmanagement.product where id = ?;";
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
@@ -28,7 +32,6 @@ public class ProductDAOImpl implements ProductDAO {
 	public int CreateProduct(Product product) {
 		return jdbcTemplate.update(INSERT_QUERY, product.getName(), product.getPrice(), product.getDate(),
 				product.getDescription());
-
 	}
 
 	@Override
@@ -43,7 +46,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> getAllProduct() {
+	public List<Product> getAllProducts() {
 
 		return jdbcTemplate.query(SELECT_ALL_PRODUCTS, new ResultSetExtractor<List<Product>>() {
 

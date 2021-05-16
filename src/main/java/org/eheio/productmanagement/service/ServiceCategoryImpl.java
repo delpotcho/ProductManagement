@@ -29,7 +29,6 @@ public class ServiceCategoryImpl implements IServiceCategorie {
 
 	@Override
 	public List<Category> getAllCategory() {
-		// TODO Auto-generated method stub
 		return categorieRepository.findAll();
 	}
 
