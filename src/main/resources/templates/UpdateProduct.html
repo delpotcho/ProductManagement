@@ -17,7 +17,7 @@
 <body>
 	<div class="container">
 		<br> <br>
-		<h2>Add Product</h2>
+		<h2>Update Product</h2>
 		<br>
 		<form action="#" th:action="@{/saveProduct}" th:object="${product}"
 			method="POST">
@@ -32,7 +32,7 @@
 					th:text="${p.name}">
 			</select>
 
-			<button type="submit" class="btn btn-info col-2">Add</button>
+			<button type="submit" class="btn btn-info col-2">Update</button>
 		</form>
 	</div>
 

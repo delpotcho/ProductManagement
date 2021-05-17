@@ -7,8 +7,10 @@ import org.eheio.productmanagement.dao.ProductRepository;
 import org.eheio.productmanagement.entities.Product;
 import org.eheio.productmanagement.service.IServiceProduct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+@Primary
 @Component
 public class ServiceProductv2 implements IServiceProduct {
 

@@ -13,18 +13,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-@Primary
+//@Primary
 @Component
 public class ServiceProduct implements IServiceProduct {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	final String SELECT_PRODUCT_BY_ID = "select id, Name, Price, Date, Description, category_id from product, where id =?;";
+	final String SELECT_PRODUCT_BY_ID = "select id, Name, Price, Date, Description, category_id from product where `id` = ?;";
 	final String SELECT_ALL_PRODUCTS = "select * from product;";
 
 	final String INSERT_QUERY = "INSERT INTO product (Name, Price, Date, Description) VALUES  (?, ?, ?, ?);";
-	final String UPDATE_QUERY = "update product set Name = ?, Price = ?, Date =?, Description = ? where id = ?;";
+	final String UPDATE_QUERY = "update product set Name = ?, Price = ?, Date =?, Description = ? where `id` = ?;";
 	final String DELETE_QUERY = "delete from product where id = ?;";
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
