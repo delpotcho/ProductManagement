@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IServiceProduct {
 
-	public void CreateProduct (Product product);
-	public void UpdateProduct (Product product);
-	public void DeleteProduct (Product product);
+	public void createProduct (Product product);
+	public void updateProduct (Product product);
+	public void deleteProduct (Product product);
 	public List<Product> getAllProduct();
 	public Product getProductById (Long id);
 	

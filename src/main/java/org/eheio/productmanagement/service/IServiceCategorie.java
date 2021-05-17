@@ -7,9 +7,9 @@ import org.eheio.productmanagement.entities.Category;
 
 public interface IServiceCategorie {
 
-	public void CreateCategory (Category category);
-	public void UpdateCategory (Category category);
-	public void DeleteCategory (Category category);
+	public void createCategory (Category category);
+	public void updateCategory (Category category);
+	public void deleteCategory (Category category);
 	public List<Category> getAllCategory();
 	public Category getCategoryById (Long id);
 

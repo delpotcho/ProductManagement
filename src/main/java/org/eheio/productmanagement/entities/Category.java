@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 
 import lombok.NoArgsConstructor;
 @Entity
-@NoArgsConstructor
+
 public class Category {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)

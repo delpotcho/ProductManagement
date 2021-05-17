@@ -1,29 +1,32 @@
-package org.eheio.productmanagement.service;
+package org.eheio.productmanagement.service.heberante;
 
 import java.util.List;
 
 import org.eheio.productmanagement.dao.CategorieRepository;
 import org.eheio.productmanagement.entities.Category;
+import org.eheio.productmanagement.service.IServiceCategorie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 @Service
-public class ServiceCategoryImpl implements IServiceCategorie {
+public class ServiceCategoryV2 implements IServiceCategorie {
 	@Autowired
-	CategorieRepository categorieRepository ;
+	CategorieRepository categorieRepository;
+
 	@Override
-	public void CreateCategory(Category category) {
+	public void createCategory(Category category) {
 		categorieRepository.save(category);
-		
+
 	}
 
 	@Override
-	public void UpdateCategory(Category category) {
+	public void updateCategory(Category category) {
 		categorieRepository.save(category);
-		
+
 	}
 
 	@Override
-	public void DeleteCategory(Category category) {
+	public void deleteCategory(Category category) {
 		categorieRepository.delete(category);
 	}
 
@@ -34,7 +37,7 @@ public class ServiceCategoryImpl implements IServiceCategorie {
 
 	@Override
 	public Category getCategoryById(Long id) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
