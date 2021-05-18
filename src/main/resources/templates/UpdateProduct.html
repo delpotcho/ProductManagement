@@ -21,6 +21,7 @@
 		<br>
 		<form action="#" th:action="@{/saveProduct}" th:object="${product}"
 			method="POST">
+        <input type="hidden" th:field=*{id}	>
 			<input type="text" th:field=*{name} placeholder="Enter name "
 				class="form-control mb-4 col-4"> <input type="text"
 				th:field=*{price} placeholder="Enter price"

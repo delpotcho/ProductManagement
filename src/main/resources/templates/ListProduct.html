@@ -34,6 +34,7 @@ h1,th,td {
 						<th>ID</th>
 						<th>Name</th>
 						<th>Price</th>
+						<th>category</th>
 						<th>Date</th>
 						<th>Description</th>
 						<th>Action</th>
@@ -45,7 +46,8 @@ h1,th,td {
 						<td th:text=${p.getId()}></td>
 						<td th:text="${p.name}"></td>
 						<td th:text="${p.price}"></td>
-						<td th:text="${p.date}"></td>
+						<td th:text= "${p.category?.name}"></td>
+						<td th:text="${p?.date}"></td>
 						<td th:text="${p.description}"></td>
 
 						<td><a th:href="@{/updateProduct/{id}(id=${p.id})}"

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Date;
+
 import org.eheio.productmanagement.entities.Product;
 import org.eheio.productmanagement.service.IServiceCategorie;
 import org.eheio.productmanagement.service.IServiceProduct;
@@ -33,15 +35,23 @@ public class ProductController {
 
 	@GetMapping("/createProduct")
 	public String AddProduct(Model model) {
+		
 		product = new Product();
+		
 		model.addAttribute("product", product);
+		
 		model.addAttribute("listCategory", serviceCategorie.getAllCategory());
+		
 		return "NewProduct";
 	}
 
 	@PostMapping("/saveProduct")
 	public String SaveProduct(@ModelAttribute Product product) {
+		
+		product.setDate( new Date());
+		
 		serviceProduct.createProduct(product);
+		
 		return "redirect:/";
 	}
 
@@ -52,15 +62,21 @@ public class ProductController {
 		Product product = serviceProduct.getProductById(id);
 
 		model.addAttribute("product", product);
+		
+		model.addAttribute("listCategory",serviceCategorie.getAllCategory());
 
 		return "UpdateProduct";
 	}
 
 	@GetMapping("/deleteProduct/{id}")
 	public String DeleteProduct(@PathVariable Long id) {
+		
 		Product product = serviceProduct.getProductById(id);
+		
 		serviceProduct.deleteProduct(product);
+		
 		return "redirect:/";
+		
 	}
 
 }
