@@ -1,6 +1,7 @@
 package org.eheio.productmanagement.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,71 +12,73 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.Date;
 
 import org.eheio.productmanagement.entities.Product;
-import org.eheio.productmanagement.service.IServiceCategorie;
-import org.eheio.productmanagement.service.IServiceProduct;
+import org.eheio.productmanagement.service.CategoryService;
+import org.eheio.productmanagement.service.ProductService;
 
 
 @Controller
+@RequestMapping("/product")
 public class ProductController {
+	
 	@Autowired
-	IServiceProduct serviceProduct;
+	ProductService productService;
 	@Autowired
-	IServiceCategorie serviceCategorie;
+	CategoryService categoryService;
 
 	Product product;
 
-	@GetMapping("/")
+	@GetMapping("/list")
 	
 	public String viewProduct(Model model) {
 		
-		model.addAttribute("ListProduct", serviceProduct.getAllProduct());
+		model.addAttribute("ListProduct", productService.getAll());
 		
 		return "ListProduct";
 	}
 
-	@GetMapping("/createProduct")
+	@GetMapping("/add")
 	public String AddProduct(Model model) {
 		
 		product = new Product();
 		
 		model.addAttribute("product", product);
 		
-		model.addAttribute("listCategory", serviceCategorie.getAllCategory());
+		model.addAttribute("list", categoryService.getAll());
 		
-		return "NewProduct";
+		return "New";
 	}
 
-	@PostMapping("/saveProduct")
+	@PostMapping("/save")
 	public String SaveProduct(@ModelAttribute Product product) {
 		
 		product.setDate( new Date());
 		
-		serviceProduct.createProduct(product);
+		productService.create(product);
 		
-		return "redirect:/";
+		return "redirect:/product/list";
 	}
 
-	@GetMapping("/updateProduct/{id}")
+	@GetMapping("/update/{id}")
 	public String updateProduct(@PathVariable(value = "id") Long id, Model model)
 
 	{
-		Product product = serviceProduct.getProductById(id);
+		Product product = productService.getById(id);
 
 		model.addAttribute("product", product);
 		
-		model.addAttribute("listCategory",serviceCategorie.getAllCategory());
+		model.addAttribute("listCategory",categoryService.getAll());
 
-		return "UpdateProduct";
+		return "Update";
 	}
 
-	@GetMapping("/deleteProduct/{id}")
+	@GetMapping("/delete/{id}")
 	public String DeleteProduct(@PathVariable Long id) {
 		
-		Product product = serviceProduct.getProductById(id);
+		Product product = productService.getById(id);
 		
-		serviceProduct.deleteProduct(product);
+		productService.delete(product);
 		
-		return "redirect:/";
+		return "redirect:/product/list";
 		
 	}
 

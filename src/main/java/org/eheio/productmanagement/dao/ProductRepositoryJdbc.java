@@ -1,21 +1,19 @@
-package org.eheio.productmanagement.service.jdbc;
+package org.eheio.productmanagement.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.eheio.productmanagement.entities.Product;
-import org.eheio.productmanagement.service.IServiceProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+
 //@Primary
-@Component
-public class ServiceProduct implements IServiceProduct {
+@Repository
+public abstract class ProductRepositoryJdbc implements ProductRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -32,7 +30,7 @@ public class ServiceProduct implements IServiceProduct {
 	}
 
 	@Override
-	public void createProduct(Product product) {
+	public void add(Product product) {
 		
 		jdbcTemplate.update(INSERT_QUERY, product.getName(), product.getPrice(), product.getDate(),
 				
@@ -40,7 +38,7 @@ public class ServiceProduct implements IServiceProduct {
 	}
 
 	@Override
-	public void updateProduct(Product product) {
+	public void update(Product product) {
 		
 		jdbcTemplate.update(UPDATE_QUERY, product.getName(), product.getPrice(), product.getDate(),
 				
@@ -48,13 +46,13 @@ public class ServiceProduct implements IServiceProduct {
 	}
 
 	@Override
-	public void deleteProduct(Product product) {
+	public void delete(Product product) {
 		
 		jdbcTemplate.update(DELETE_QUERY, product.getId());
 	}
 
 	@Override
-	public List<Product> getAllProduct() {
+	public List<Product> getAll() {
 
 		return jdbcTemplate.query(SELECT_ALL_PRODUCTS, new ResultSetExtractor<List<Product>>() {
 
@@ -80,7 +78,7 @@ public class ServiceProduct implements IServiceProduct {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public Product getProductById(Long id) {
+	public Product getById(Long id) {
 
 		return jdbcTemplate.query(SELECT_PRODUCT_BY_ID, new Object[] { id }, new ResultSetExtractor<Product>() {
 

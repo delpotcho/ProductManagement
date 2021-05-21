@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<html lang="en">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Product Management Application</title>
 <meta charset="utf-8">
@@ -21,11 +21,10 @@ h1,th,td {
 </style>
 </head>
 <body>
-	<div class="container">
 		<div class="container">
 			<br><br>
 			<br><h1>Product Details</h1>
-			<br><a th:href="@{/createProduct}" class="btn btn-primary btn-sm mb-3">Add
+			<br><a th:href="@{/add}" class="btn btn-primary btn-sm mb-3">Add
 				Product</a><br>
 				
 			<table class="table table-bordered table-hover table-reponsive-md">
@@ -50,9 +49,9 @@ h1,th,td {
 						<td th:text="${p?.date}"></td>
 						<td th:text="${p.description}"></td>
 
-						<td><a th:href="@{/updateProduct/{id}(id=${p.id})}"
+						<td><a th:href="@{/update/{id}(id=${p.id})}"
 							class="btn btn-success">Update</a> <a
-							th:href="@{/deleteProduct/{id}(id=${p.id})}"
+							th:href="@{/delete/{id}(id=${p.id})}"
 							class="btn btn-danger">Delete</a></td>
 					</tr>
 

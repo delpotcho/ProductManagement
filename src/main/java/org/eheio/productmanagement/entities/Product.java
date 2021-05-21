@@ -3,30 +3,35 @@ package org.eheio.productmanagement.entities;
 import java.util.*;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-
 public class Product {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private Double price;
-	@Temporal (TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	private String description;
-	@ManyToOne
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id")
 	private Category category;
 
 	public Product() {
-		
+
 	}
+
 	public Product(Long id, String name, Double price, Date date, String description) {
 		super();
 		this.id = id;
@@ -35,7 +40,7 @@ public class Product {
 		this.date = date;
 		this.description = description;
 	}
-	
+
 	public Product(Long id, String name, Double price, Date date, String description, Category category) {
 		super();
 		this.id = id;

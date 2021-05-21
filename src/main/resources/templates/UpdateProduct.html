@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<html lang="en">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Product Management Application</title>
 <meta charset="utf-8">
@@ -19,7 +19,7 @@
 		<br> <br>
 		<h2>Update Product</h2>
 		<br>
-		<form action="#" th:action="@{/saveProduct}" th:object="${product}"
+		<form action="#" th:action="@{/save}" th:object="${product}"
 			method="POST">
         <input type="hidden" th:field=*{id}	>
 			<input type="text" th:field=*{name} placeholder="Enter name "

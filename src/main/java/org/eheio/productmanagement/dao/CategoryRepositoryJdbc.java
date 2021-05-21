@@ -1,4 +1,4 @@
-package org.eheio.productmanagement.service.jdbc;
+package org.eheio.productmanagement.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,16 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eheio.productmanagement.entities.Category;
-import org.eheio.productmanagement.service.IServiceCategorie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-@Primary
-@Component
-public class ServiceCategory implements IServiceCategorie {
+
+//@Primary
+@Repository
+public abstract class CategoryRepositoryJdbc implements CategoryRepository{
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -30,24 +29,24 @@ public class ServiceCategory implements IServiceCategorie {
 	
 
 	@Override
-	public void createCategory(Category category) {
+	public void add(Category category) {
 		
 		jdbcTemplate.update(INSERT_QUERY, category.getName(), category.getDescription());
 	}
 
 	@Override
-	public void updateCategory(Category category) {
+	public void update(Category category) {
 		jdbcTemplate.update(UPDATE_QUERY, category.getName(), category.getDescription(), category.getId());
 	}
 
 	@Override
-	public void deleteCategory(Category category) {
+	public void delete(Category category) {
 		jdbcTemplate.update(DELETE_QUERY, category.getId());
 
 	}
 
 	@Override
-	public List<Category> getAllCategory() {
+	public List<Category> getAll() {
 
 		return jdbcTemplate.query(SELECT_ALL_CATEGORIES, new ResultSetExtractor<List<Category>>() {
 
@@ -67,7 +66,7 @@ public class ServiceCategory implements IServiceCategorie {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public Category getCategoryById(Long id) {
+	public Category getById(Long id) {
 
 		return jdbcTemplate.query(SELECT_CATEGORY_BY_ID, new Object[] { id }, new ResultSetExtractor<Category>() {
 
@@ -83,5 +82,4 @@ public class ServiceCategory implements IServiceCategorie {
 			}
 		});
 	}
-
 }

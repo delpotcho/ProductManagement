@@ -3,34 +3,35 @@ package org.eheio.productmanagement.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.NoArgsConstructor;
 @Entity
-
 public class Category {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String description;
-	@OneToMany (mappedBy = "category")
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
 	private List<Product> products;
 
 	public Category() {
 
 	}
-	
+
 	public Category(Long id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 	}
-	
+
 	public Category(Long id, String name, String description, List<Product> products) {
 		super();
 		this.id = id;

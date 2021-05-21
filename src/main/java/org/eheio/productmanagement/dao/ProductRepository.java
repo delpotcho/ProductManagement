@@ -1,10 +1,17 @@
 package org.eheio.productmanagement.dao;
 
+import java.util.List;
+
 import org.eheio.productmanagement.entities.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
-@Repository
-public interface ProductRepository  extends JpaRepository<Product, Long>{
+@Component
+public interface ProductRepository {
 
+	public void add(Product product);
+	public void update(Product product);
+	public void delete(Product product);
+	public List<Product> getAll();
+	public Product getById(Long id);
 }
