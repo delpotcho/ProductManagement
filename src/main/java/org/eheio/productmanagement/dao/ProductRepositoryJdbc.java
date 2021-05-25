@@ -4,16 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.eheio.productmanagement.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 //@Primary
 @Repository
-public abstract class ProductRepositoryJdbc implements ProductRepository {
+public class ProductRepositoryJdbc implements ProductRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -31,23 +31,23 @@ public abstract class ProductRepositoryJdbc implements ProductRepository {
 
 	@Override
 	public void add(Product product) {
-		
+
 		jdbcTemplate.update(INSERT_QUERY, product.getName(), product.getPrice(), product.getDate(),
-				
+
 				product.getDescription());
 	}
 
 	@Override
 	public void update(Product product) {
-		
+
 		jdbcTemplate.update(UPDATE_QUERY, product.getName(), product.getPrice(), product.getDate(),
-				
+
 				product.getDescription(), product.getId());
 	}
 
 	@Override
 	public void delete(Product product) {
-		
+
 		jdbcTemplate.update(DELETE_QUERY, product.getId());
 	}
 
@@ -57,11 +57,11 @@ public abstract class ProductRepositoryJdbc implements ProductRepository {
 		return jdbcTemplate.query(SELECT_ALL_PRODUCTS, new ResultSetExtractor<List<Product>>() {
 
 			public List<Product> extractData(ResultSet rs) throws SQLException {
-				
+
 				List<Product> products = new ArrayList<Product>();
-				
+
 				while (rs.next()) {
-					
+
 					Product product = new Product();
 					product.setId(rs.getLong("id"));
 					product.setName(rs.getString("name"));
@@ -69,7 +69,7 @@ public abstract class ProductRepositoryJdbc implements ProductRepository {
 					product.setDate(rs.getDate("date"));
 					product.setDescription(rs.getString("Description"));
 					products.add(product);
-					
+
 				}
 				return products;
 			}

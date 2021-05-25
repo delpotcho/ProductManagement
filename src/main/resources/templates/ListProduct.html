@@ -24,7 +24,7 @@ h1,th,td {
 		<div class="container">
 			<br><br>
 			<br><h1>Product Details</h1>
-			<br><a th:href="@{/add}" class="btn btn-primary btn-sm mb-3">Add
+			<br><a th:href="@{/product/add}" class="btn btn-primary btn-sm mb-3">Add
 				Product</a><br>
 				
 			<table class="table table-bordered table-hover table-reponsive-md">
@@ -49,9 +49,9 @@ h1,th,td {
 						<td th:text="${p?.date}"></td>
 						<td th:text="${p.description}"></td>
 
-						<td><a th:href="@{/update/{id}(id=${p.id})}"
+						<td><a th:href="@{/product/update/{id}(id=${p.id})}"
 							class="btn btn-success">Update</a> <a
-							th:href="@{/delete/{id}(id=${p.id})}"
+							th:href="@{/product/delete/{id}(id=${p.id})}"
 							class="btn btn-danger">Delete</a></td>
 					</tr>
 

@@ -14,36 +14,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
-	
+
 	@Autowired
 	CategoryService categoryService;
 
 	Category category;
 
 	@GetMapping("/list")
-	
+
 	public String viewCategory(Model model) {
-		
+
 		model.addAttribute("ListCategory", categoryService.getAll());
-		
+
 		return "ListCategory";
 	}
 
 	@GetMapping("/add")
 	public String AddCategory(Model model) {
-		
+
 		category = new Category();
-		
+
 		model.addAttribute("category", category);
-		
+
 		return "New";
 	}
 
 	@PostMapping("/save")
 	public String SaveCategory(@ModelAttribute Category category) {
-		
+
 		categoryService.create(category);
-		
+
 		return "redirect:/category/list";
 	}
 
@@ -60,13 +60,13 @@ public class CategoryController {
 
 	@GetMapping("/delete/{id}")
 	public String DeleteCategory(@PathVariable Long id) {
-		
+
 		Category category = categoryService.getById(id);
-		
+
 		categoryService.delete(category);
-		
+
 		return "redirect:/category/list";
-		
+
 	}
 
 }

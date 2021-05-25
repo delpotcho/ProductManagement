@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Primary
 @Repository
-public abstract class CategoryRepositoryHibernate implements CategoryRepository {
+public class CategoryRepositoryHibernate implements CategoryRepository {
 
 	@Autowired
 	CategoryRepositoryJpa categoryRepositoryJpa;
@@ -43,11 +43,11 @@ public abstract class CategoryRepositoryHibernate implements CategoryRepository 
 		Category category = null;
 
 		Optional<Category> CategoryOptional = categoryRepositoryJpa.findById(id);
-		
+
 		category = CategoryOptional.get();
-		
+
 		if (!CategoryOptional.isPresent()) {
-			
+
 			throw new RuntimeException("Category not Font" + id);
 		}
 		return category;

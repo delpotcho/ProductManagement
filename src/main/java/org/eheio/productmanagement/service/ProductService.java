@@ -6,10 +6,14 @@ import org.eheio.productmanagement.entities.Product;
 
 public interface ProductService {
 
-	public void create (Product product);
-	public void update (Product product);
-	public void delete (Product product);
+	public void create(Product product);
+
+	public void update(Product product);
+
+	public void delete(Product product);
+
 	public List<Product> getAll();
-	public Product getById (Long id);
-	
+
+	public Product getById(Long id);
+
 }

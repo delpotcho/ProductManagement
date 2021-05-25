@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	ProductRepository productRepository;
-	
+
 	@Override
 	public void create(Product product) {
 		productRepository.add(product);

@@ -7,14 +7,13 @@ import java.util.List;
 
 import org.eheio.productmanagement.entities.Category;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 //@Primary
 @Repository
-public abstract class CategoryRepositoryJdbc implements CategoryRepository{
+public class CategoryRepositoryJdbc implements CategoryRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -26,11 +25,9 @@ public abstract class CategoryRepositoryJdbc implements CategoryRepository{
 	final String UPDATE_QUERY = "update category set Name = ?, Description = ? where id = ?;";
 	final String DELETE_QUERY = "delete from category where id = ?;";
 
-	
-
 	@Override
 	public void add(Category category) {
-		
+
 		jdbcTemplate.update(INSERT_QUERY, category.getName(), category.getDescription());
 	}
 

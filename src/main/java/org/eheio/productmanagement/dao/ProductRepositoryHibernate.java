@@ -5,13 +5,12 @@ import java.util.Optional;
 
 import org.eheio.productmanagement.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 @Primary
-@Repository
-public abstract class ProductRepositoryHibernate implements ProductRepository {
+@Component
+public class ProductRepositoryHibernate implements ProductRepository {
 
 	@Autowired
 	ProductRepositoryJpa productRepositoryJpa;
@@ -42,11 +41,11 @@ public abstract class ProductRepositoryHibernate implements ProductRepository {
 		Product product = null;
 
 		Optional<Product> ProductOptional = productRepositoryJpa.findById(id);
-		
+
 		product = ProductOptional.get();
-		
+
 		if (!ProductOptional.isPresent()) {
-			
+
 			throw new RuntimeException("Product not Font" + id);
 		}
 		return product;
